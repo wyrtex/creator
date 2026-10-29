@@ -1,0 +1,26 @@
+{
+  "channel": {
+    "name": "TBD",
+    "language": "ru",
+    "niche": "Supercell: Brawl Stars, Clash Royale, Clash of Clans, mo.co — без живого геймплея: новости, тактики, стратегии, тир-листы, разборы механик",
+    "audience": "русскоязычные игроки 13–25 лет, телефон, смотрят без звука примерно в половине случаев"
+  },
+  "games": ["Brawl Stars", "Clash Royale", "Clash of Clans", "mo.co"],
+  "cadence": {
+    "youtube_shorts_per_day": 1,
+    "youtube_long_per_week": 1,
+    "long_day": "saturday",
+    "timezone": "Europe/Moscow",
+    "publish_time_short": "18:00",
+    "publish_time_long": "16:00"
+  },
+  "crosspost_shorts_to": ["instagram", "tiktok"],
+  "tiktok_mode": "direct",
+  "voice": { "engine": "gemini", "voice": "Fenrir", "fallback_voice": "Puck", "edge_fallback": "ru-RU-DmitryNeural" },
+  "formats": {
+    "short": { "size": "1080x1920", "seconds": [25, 50] },
+    "long": { "size": "1920x1080", "minutes": [6, 10], "chapters": true }
+  },
+  "mix": { "news": 0.4, "strategy": 0.35, "tierlist_meta": 0.15, "facts_explainer": 0.1 },
+  "disclaimer": "This content is not affiliated with, endorsed, sponsored, or specifically approved by Supercell and Supercell is not responsible for it. For more information see Supercell's Fan Content Policy: www.supercell.com/fan-content-policy."
+}

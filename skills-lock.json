@@ -331,12 +331,6 @@
       "skillPath": "skills/tiktok-video-publishing/SKILL.md",
       "computedHash": "eb23026311c4adbc3e85319a9093a67be22c0aae36526e8db277d00ec7e27324"
     },
-    "upload-post": {
-      "source": "upload-post/upload-post-skill",
-      "sourceType": "github",
-      "skillPath": "SKILL.md",
-      "computedHash": "555be8b678206cef666e3d62e153ad93307580aa71ee88f4b4f3154f0a371006"
-    },
     "write-swift": {
       "source": "emilkowalski/skills",
       "sourceType": "github",
