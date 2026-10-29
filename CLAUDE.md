@@ -20,7 +20,7 @@
 1. **Тема** — свежие новости/патчноуты (WebSearch: официальные блоги Supercell, Reddit, X). Для стратегий — текущая мета.
 2. **План/упаковка** — `yt-plan`, `yt-viral`, `yt-package` (заголовок + превью как пара), `yt-seo`.
 3. **Сценарий** — длинное: `yt-script`; короткое: `tiktok-script`, `short-form-video-script`, `ig-reel`, `hook-writer`. Хук в первые 1–2 сек.
-4. **Озвучка** — `media-use` / `npx hyperframes tts` (Kokoro, локально). Субтитры — `remotion-captions`.
+4. **Озвучка** — русский: `python3 tools/tts.py text.txt out.mp3` (edge-tts, `ru-RU-DmitryNeural`; пишет и тайминги слов `out.json` для субтитров). Kokoro русский не умеет.
 5. **Видео** — `hyperframes` (основной движок) или `remotion-*`. Вкус и моушн — `emil-design-eng`, `animate`, `improve-animations`, `design-taste-frontend`, `impeccable`.
    - Длинное: 16:9, 1920×1080, 6–12 мин, главы через `yt-chapters`.
    - Короткое: 9:16, 1080×1920, 20–55 сек; из длинных нарезать через `yt-shorts`, `ig-repurpose`.
@@ -28,6 +28,7 @@
 7. **Публикация** — `upload-post` (YouTube, TikTok, Instagram одним API). Платформенные нюансы — `tiktok-video-publishing`.
 8. **Аналитика** — `yt-retention`, `yt-audit`, `ig-audit`, `tiktok-growth` → корректировать следующие темы.
 
+Пример готового проекта: `videos/cr-elixir-short/` (сцены, `script/gen_trades.py`, `script/gen_captions.py`).
 Готовые файлы складывать в `output/<дата>-<slug>/` (video, thumbnail, script.md, meta.json).
 
 ## Ассеты и авторские права

@@ -1,0 +1,88 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #hook-pill {
+      position: absolute; top: 236px; left: 0; right: 0; text-align: center;
+    }
+    #hook-pill span {
+      display: inline-block; padding: 12px 28px; border-radius: 999px;
+      background: rgba(225, 75, 255, 0.16); border: 2px solid rgba(225, 75, 255, 0.55);
+      font-weight: 800; font-size: 30px; letter-spacing: 0.08em; color: #f3c9ff;
+    }
+    #hook-l1 {
+      position: absolute; top: 330px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 96px; line-height: 1; letter-spacing: -0.03em;
+    }
+    #hook-deck { position: absolute; left: 0; right: 0; top: 520px; height: 420px; }
+    .hook-back {
+      position: absolute; left: 415px; top: 40px; width: 250px; height: 330px; border-radius: 28px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255, 200, 58, 0.55) 0 34px, transparent 36px),
+        repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.07) 0 10px, transparent 10px 20px),
+        linear-gradient(180deg, #6a2bd8 0%, #32107a 100%);
+      border: 7px solid #b78cff; box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+      transform-origin: 50% 120%;
+    }
+    #hook-strike {
+      position: absolute; left: 150px; top: 205px; width: 780px; height: 22px; border-radius: 11px;
+      background: var(--red); box-shadow: 0 0 30px rgba(255, 77, 99, 0.7); transform-origin: 0 50%;
+    }
+    #hook-not {
+      position: absolute; top: 980px; left: 0; right: 0; text-align: center;
+      font-weight: 800; font-size: 62px; color: var(--ink-dim); letter-spacing: -0.02em;
+    }
+    #hook-a {
+      position: absolute; top: 620px; left: 0; right: 0; text-align: center;
+      font-weight: 800; font-size: 60px; color: var(--ink-dim);
+    }
+    #hook-math {
+      position: absolute; top: 700px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 108px; letter-spacing: -0.03em; line-height: 1;
+      color: var(--gold); text-shadow: 0 6px 0 #a64b00, 0 0 60px rgba(255, 200, 58, 0.35);
+    }
+    #hook-eq {
+      position: absolute; top: 870px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 80px; color: var(--elixir); letter-spacing: -0.02em;
+    }
+    #hook-eq b { color: var(--win); }
+  </style>
+  <div id="root" data-composition-id="hook" data-width="1080" data-height="1920">
+    <div id="hook-pill" class="clip" data-start="0" data-duration="5"><span>CLASH ROYALE · ГАЙД</span></div>
+    <div id="hook-l1" class="clip" data-start="0" data-duration="5">ТЫ ПРОИГРЫВАЕШЬ</div>
+    <div id="hook-deck" class="clip" data-start="0" data-duration="3.75">
+      <div class="hook-back" id="hook-b1"></div>
+      <div class="hook-back" id="hook-b2"></div>
+      <div class="hook-back" id="hook-b3"></div>
+      <div class="hook-back" id="hook-b4"></div>
+      <div id="hook-strike"></div>
+    </div>
+    <div id="hook-not" class="clip" data-start="1.7" data-duration="2.05">НЕ ИЗ-ЗА КОЛОДЫ</div>
+    <div id="hook-a" class="clip" data-start="3.4" data-duration="1.6">А ИЗ-ЗА</div>
+    <div id="hook-math" class="clip" data-start="3.85" data-duration="1.15">МАТЕМАТИКИ</div>
+    <div id="hook-eq" class="clip" data-start="3.9" data-duration="1.1">5 − 3 = <b>+2</b></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    // frame 0 already carries the hook line; the deck fans open under it
+    const fan = [
+      ["#hook-b1", -24, -150],
+      ["#hook-b2", -8, -50],
+      ["#hook-b3", 8, 50],
+      ["#hook-b4", 24, 150],
+    ];
+    fan.forEach(([id, r, x], i) => {
+      tl.fromTo(id, { rotation: 0, x: 0, y: 40, opacity: 0 }, { rotation: r, x, y: 0, opacity: 1, duration: 0.7, ease: "expo.out" }, 0.05 + i * 0.06);
+    });
+    tl.fromTo("#hook-not", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 1.75);
+    tl.fromTo("#hook-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power3.out" }, 2.09);
+    tl.fromTo("#hook-deck .hook-back", { filter: "grayscale(0) brightness(1)" }, { filter: "grayscale(1) brightness(0.55)", duration: 0.3, ease: "power2.out" }, 2.15);
+    // the deck leaves; the real reason arrives
+    tl.to(["#hook-deck", "#hook-not"], { opacity: 0, filter: "blur(10px)", duration: 0.2, ease: "power2.in" }, 3.4);
+    tl.fromTo("#hook-a", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power4.out" }, 3.41);
+    tl.fromTo("#hook-math", { opacity: 0, scale: 1.25, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.35, ease: "expo.out" }, 3.9);
+    tl.fromTo("#hook-eq", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 3.95);
+    // exit into the next scene
+    tl.to(["#hook-pill", "#hook-l1", "#hook-a", "#hook-math", "#hook-eq"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in" }, 4.8);
+    window.__timelines["hook"] = tl;
+  </script>
+</template>

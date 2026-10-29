@@ -1,0 +1,40 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #push-flood {
+      position: absolute; inset: 0;
+      background: radial-gradient(90% 60% at 50% 40%, #ffd65a 0%, var(--gold) 45%, var(--gold-deep) 100%);
+    }
+    #push-pre {
+      position: absolute; top: 470px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 96px; letter-spacing: -0.03em; line-height: 1;
+    }
+    #push-big {
+      position: absolute; top: 600px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 270px; letter-spacing: -0.05em; line-height: 1; color: #0b1238;
+    }
+    #push-not {
+      position: absolute; top: 920px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 92px; letter-spacing: -0.03em; color: #0b1238;
+    }
+  </style>
+  <div id="root" data-composition-id="push" data-width="1080" data-height="1920">
+    <div id="push-flood" class="clip" data-start="0.95" data-duration="2.55"></div>
+    <div id="push-pre" class="clip" data-start="0" data-duration="3.5">ВОТ ТОГДА</div>
+    <div id="push-big" class="clip" data-start="0.95" data-duration="2.55">ПУШЬ</div>
+    <div id="push-not" class="clip" data-start="2.1" data-duration="1.4">НЕ РАНЬШЕ.</div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#push-pre", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.1);
+    // colour flood from the centre on the word itself
+    tl.fromTo("#push-flood", { clipPath: "circle(0% at 50% 40%)" }, { clipPath: "circle(120% at 50% 40%)", duration: 0.4, ease: "power2.inOut" }, 0.95);
+    tl.to("#push-pre", { color: "#0b1238", duration: 0.2, ease: "power2.inOut" }, 1.05);
+    tl.fromTo("#push-big", { opacity: 0, scale: 1.7, filter: "blur(14px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.3, ease: "power4.out" }, 1.01);
+    tl.fromTo("#push-not", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "expo.out" }, 2.17);
+    // collapse back into the arena
+    tl.to(["#push-pre", "#push-big", "#push-not"], { opacity: 0, filter: "blur(10px)", duration: 0.15, ease: "power2.in" }, 3.2);
+    tl.to("#push-flood", { clipPath: "circle(0% at 50% 40%)", duration: 0.25, ease: "power3.in" }, 3.22);
+    window.__timelines["push"] = tl;
+  </script>
+</template>

@@ -1,0 +1,48 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #outro-mark { position: absolute; left: 440px; top: 250px; width: 200px; height: 250px; }
+    #outro-save {
+      position: absolute; top: 540px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 116px; letter-spacing: -0.03em; line-height: 1;
+      color: var(--gold); text-shadow: 0 6px 0 #a64b00;
+    }
+    #outro-why {
+      position: absolute; top: 670px; left: 0; right: 0; text-align: center;
+      font-weight: 800; font-size: 52px; color: var(--ink-dim);
+    }
+    #outro-bubble {
+      position: absolute; left: 110px; top: 800px; width: 860px; padding: 40px 44px 46px;
+      border-radius: 40px; background: #ffffff; color: #0b1238; text-align: center;
+      font-weight: 900; font-size: 62px; line-height: 1.08; letter-spacing: -0.02em;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
+    }
+    #outro-tail { position: absolute; left: 150px; bottom: -38px; width: 70px; height: 50px; }
+    #outro-bubble em { font-style: normal; color: var(--elixir-deep); }
+  </style>
+  <div id="root" data-composition-id="outro" data-width="1080" data-height="1920">
+    <svg id="outro-mark" class="clip" data-start="0" data-duration="5.5" viewBox="0 0 200 250">
+      <path d="M30 14 H170 a14 14 0 0 1 14 14 V232 L100 180 L16 232 V28 a14 14 0 0 1 14 -14 Z" fill="var(--gold)" stroke="#a64b00" stroke-width="10" stroke-linejoin="round"/>
+      <path d="M70 92 L92 116 L134 70" fill="none" stroke="#0b1238" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+    <div id="outro-save" class="clip" data-start="0" data-duration="5.5">СОХРАНИ</div>
+    <div id="outro-why" class="clip" data-start="0.9" data-duration="4.6">чтобы не забыть</div>
+    <div id="outro-bubble" class="clip" data-start="2.5" data-duration="3">
+      <span class="outro-w">Какой</span> <span class="outro-w">твой</span> <span class="outro-w"><em>любимый</em></span> <span class="outro-w"><em>размен?</em></span>
+      <svg id="outro-tail" viewBox="0 0 70 50"><path d="M0 0 H70 L10 50 Z" fill="#ffffff"/></svg>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#outro-mark", { opacity: 0, y: -80, scale: 0.7 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.6)" }, 0.08);
+    tl.fromTo("#outro-save", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.1);
+    tl.fromTo("#outro-why", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, 0.94);
+    tl.fromTo("#outro-bubble", { opacity: 0, scale: 0.6, y: 40 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.5)" }, 2.57);
+    // words go from grey to ink as they are spoken
+    const at = [2.73, 3.62, 3.92, 4.29];
+    document.querySelectorAll("#outro-bubble .outro-w").forEach((w, i) => {
+      tl.fromTo(w, { opacity: 0.25 }, { opacity: 1, duration: 0.12, ease: "power2.out" }, at[i]);
+    });
+    window.__timelines["outro"] = tl;
+  </script>
+</template>

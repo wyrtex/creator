@@ -1,0 +1,98 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #trade1-pill { position: absolute; top: 210px; left: 0; right: 0; text-align: center; }
+    #trade1-pill span {
+      display: inline-block; padding: 10px 26px; border-radius: 999px; background: rgba(255, 200, 58, 0.14);
+      border: 2px solid rgba(255, 200, 58, 0.55); font-weight: 800; font-size: 30px; letter-spacing: 0.08em; color: var(--gold);
+    }
+    .trade1-row { position: absolute; left: 0; right: 0; height: 330px; }
+    #trade1-opp { top: 290px; }
+    #trade1-you { top: 670px; }
+    .trade1-row .card { left: 120px; top: 0; }
+    .trade1-who { position: absolute; left: 430px; top: 34px; font-weight: 800; font-size: 34px; letter-spacing: 0.08em; }
+    .trade1-name { position: absolute; left: 430px; top: 84px; width: 600px; white-space: nowrap; font-weight: 900; font-size: 54px; line-height: 1.02; letter-spacing: -0.02em; }
+    .trade1-row .drop { left: 430px; top: 206px; }
+    .trade1-cost { position: absolute; left: 540px; top: 236px; font-weight: 800; font-size: 44px; color: var(--ink-dim); }
+    #trade1-shot { position: absolute; left: 175px; top: 640px; width: 160px; height: 160px; }
+    #trade1-result {
+      position: absolute; top: 1010px; left: 0; right: 0; text-align: center; line-height: 1;
+    }
+    #trade1-result b {
+      font-weight: 900; font-size: 150px; letter-spacing: -0.04em; color: var(--win);
+      text-shadow: 0 7px 0 #0f7a40, 0 0 60px rgba(65, 229, 138, 0.4);
+    }
+    #trade1-result i { font-style: normal; font-weight: 800; font-size: 46px; color: var(--ink); margin-left: 18px; vertical-align: 34px; }
+    #trade1-total {
+      position: absolute; top: 236px; right: 60px; padding: 10px 22px; border-radius: 18px;
+      background: rgba(65, 229, 138, 0.16); border: 2px solid rgba(65, 229, 138, 0.6); font-weight: 800; font-size: 34px;
+    }
+    #trade1-total b { color: var(--win); }
+  </style>
+  <div id="root" data-composition-id="trade1" data-width="1080" data-height="1920">
+    <div id="trade1-pill" class="clip" data-start="0" data-duration="7.7"><span>РАЗМЕН №1</span></div>
+    
+    <div id="trade1-opp" class="trade1-row clip" data-start="1.14" data-duration="6.56">
+      <div class="card card--red" id="trade1-opp-card"><svg class="art" viewBox="0 0 200 200">
+      <g transform="translate(58 78)"><path d="M-22 -4 L-48 -26 L-40 8 Z M22 -4 L48 -26 L40 8 Z" fill="#9ad0ff"/><circle r="26" fill="#3b7bff"/><circle cx="-9" cy="-4" r="6" fill="#fff"/><circle cx="9" cy="-4" r="6" fill="#fff"/></g>
+      <g transform="translate(142 78)"><path d="M-22 -4 L-48 -26 L-40 8 Z M22 -4 L48 -26 L40 8 Z" fill="#9ad0ff"/><circle r="26" fill="#3b7bff"/><circle cx="-9" cy="-4" r="6" fill="#fff"/><circle cx="9" cy="-4" r="6" fill="#fff"/></g>
+      <g transform="translate(100 146)"><path d="M-22 -4 L-48 -26 L-40 8 Z M22 -4 L48 -26 L40 8 Z" fill="#9ad0ff"/><circle r="26" fill="#3b7bff"/><circle cx="-9" cy="-4" r="6" fill="#fff"/><circle cx="9" cy="-4" r="6" fill="#fff"/></g></svg><div class="card-name">Орда</div></div>
+      <div class="trade1-who" style="color: var(--red)">СОПЕРНИК</div>
+      <div class="trade1-name">Орда миньонов</div>
+      <div class="drop" id="trade1-opp-drop">
+        <svg viewBox="0 0 92 112"><defs><linearGradient id="trade1-opp-drop-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9fae"/><stop offset="1" stop-color="#c81e3a"/></linearGradient></defs>
+          <path d="M46 4 C64 32 86 52 86 72 A40 40 0 0 1 6 72 C6 52 28 32 46 4 Z" fill="url(#trade1-opp-drop-g)" stroke="#5c0a1a" stroke-width="4"/></svg>
+        <span>5</span>
+      </div>
+      <div class="trade1-cost" id="trade1-opp-cost">эликсира</div>
+    </div>
+    <div id="trade1-you" class="trade1-row clip" data-start="3.9000000000000004" data-duration="3.80">
+      <div class="card" id="trade1-you-card"><svg class="art" viewBox="0 0 200 200">
+      <g transform="rotate(-40 100 100)" stroke-linecap="round">
+        <g><line x1="28" y1="62" x2="160" y2="62" stroke="#e8d3a8" stroke-width="9"/><path d="M152 46 L184 62 L152 78 Z" fill="#cfd8e6"/><path d="M28 62 L14 48 M28 62 L14 76" stroke="#ff5a6e" stroke-width="8"/></g>
+        <g><line x1="28" y1="100" x2="160" y2="100" stroke="#e8d3a8" stroke-width="9"/><path d="M152 84 L184 100 L152 116 Z" fill="#cfd8e6"/><path d="M28 100 L14 86 M28 100 L14 114" stroke="#ff5a6e" stroke-width="8"/></g>
+        <g><line x1="28" y1="138" x2="160" y2="138" stroke="#e8d3a8" stroke-width="9"/><path d="M152 122 L184 138 L152 154 Z" fill="#cfd8e6"/><path d="M28 138 L14 124 M28 138 L14 152" stroke="#ff5a6e" stroke-width="8"/></g>
+      </g></svg><div class="card-name">Стрелы</div></div>
+      <div class="trade1-who" style="color: var(--blue)">ТЫ</div>
+      <div class="trade1-name">Стрелы</div>
+      <div class="drop" id="trade1-you-drop">
+        <svg viewBox="0 0 92 112"><defs><linearGradient id="trade1-you-drop-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd3ff"/><stop offset="1" stop-color="#1d6fd6"/></linearGradient></defs>
+          <path d="M46 4 C64 32 86 52 86 72 A40 40 0 0 1 6 72 C6 52 28 32 46 4 Z" fill="url(#trade1-you-drop-g)" stroke="#0a2a5c" stroke-width="4"/></svg>
+        <span>3</span>
+      </div>
+      <div class="trade1-cost" id="trade1-you-cost">эликсира</div>
+    </div>
+    <svg id="trade1-shot" class="clip" data-start="4.98" data-duration="0.45" viewBox="0 0 200 200">
+      <g transform="rotate(-40 100 100)" stroke-linecap="round">
+        <g><line x1="28" y1="62" x2="160" y2="62" stroke="#e8d3a8" stroke-width="9"/><path d="M152 46 L184 62 L152 78 Z" fill="#cfd8e6"/><path d="M28 62 L14 48 M28 62 L14 76" stroke="#ff5a6e" stroke-width="8"/></g>
+        <g><line x1="28" y1="100" x2="160" y2="100" stroke="#e8d3a8" stroke-width="9"/><path d="M152 84 L184 100 L152 116 Z" fill="#cfd8e6"/><path d="M28 100 L14 86 M28 100 L14 114" stroke="#ff5a6e" stroke-width="8"/></g>
+        <g><line x1="28" y1="138" x2="160" y2="138" stroke="#e8d3a8" stroke-width="9"/><path d="M152 122 L184 138 L152 154 Z" fill="#cfd8e6"/><path d="M28 138 L14 124 M28 138 L14 152" stroke="#ff5a6e" stroke-width="8"/></g>
+      </g></svg>
+    <div id="trade1-result" class="clip" data-start="5.79" data-duration="1.91"><b>+2</b><i>в твою пользу</i></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#trade1-pill", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 0);
+    // opponent's card lands, then its price
+    tl.fromTo("#trade1-opp-card", { y: -120, rotation: -8, opacity: 0 }, { y: 0, rotation: -3, opacity: 1, duration: 0.55, ease: "back.out(1.5)" }, 1.19);
+    tl.fromTo("#trade1-opp .trade1-who, #trade1-opp .trade1-name", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power4.out", stagger: 0.08 }, 1.24);
+    tl.fromTo("#trade1-opp-drop", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 2.08);
+    tl.fromTo("#trade1-opp-cost", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 2.18);
+    // your answer
+    tl.fromTo("#trade1-you-card", { y: 120, rotation: 8, opacity: 0 }, { y: 0, rotation: 3, opacity: 1, duration: 0.55, ease: "back.out(1.5)" }, 3.95);
+    tl.fromTo("#trade1-you .trade1-who, #trade1-you .trade1-name", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.15, ease: "power4.out", stagger: 0.08 }, 4.0);
+    tl.fromTo("#trade1-you-drop", { scale: 0, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2)" }, 4.64);
+    tl.fromTo("#trade1-you-cost", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 4.739999999999999);
+    // your card's effect flies up and takes the opponent's card out
+    tl.fromTo("#trade1-shot", { y: 0, scale: 0.8, opacity: 1 }, { y: -360, scale: 1.1, opacity: 1, duration: 0.32, ease: "power3.in" }, 5.0);
+    tl.to("#trade1-shot", { opacity: 0, scale: 1.6, duration: 0.1, ease: "power2.out" }, 5.32);
+    tl.fromTo("#trade1-opp-card", { filter: "brightness(1) grayscale(0)" }, { filter: "brightness(2.2) grayscale(0)", duration: 0.06, ease: "none" }, 5.32);
+    tl.to("#trade1-opp-card", { filter: "brightness(0.5) grayscale(1)", duration: 0.35, ease: "power2.out" }, 5.38);
+    tl.fromTo("#trade1-opp", { x: 0 }, { keyframes: [{ x: -14 }, { x: 12 }, { x: -6 }, { x: 0 }], duration: 0.28, ease: "none" }, 5.32);
+    // the trade, in one number
+    tl.fromTo("#trade1-result", { opacity: 0, scale: 1.6, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 5.84);
+    
+    tl.to(["#trade1-pill", "#trade1-opp", "#trade1-you", "#trade1-result"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in" }, 7.5);
+    window.__timelines["trade1"] = tl;
+  </script>
+</template>

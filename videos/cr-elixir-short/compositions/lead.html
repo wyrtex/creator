@@ -1,0 +1,76 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    .lead-label { position: absolute; left: 110px; font-weight: 800; font-size: 38px; letter-spacing: 0.08em; }
+    #lead-you-l { top: 300px; color: var(--blue); }
+    #lead-opp-l { top: 560px; color: var(--red); }
+    .lead-bar {
+      position: absolute; left: 110px; width: 860px; height: 96px; padding: 10px; border-radius: 24px;
+      background: rgba(8, 10, 40, 0.75); display: flex; gap: 8px;
+    }
+    #lead-you { top: 356px; border: 4px solid rgba(63, 169, 255, 0.6); }
+    #lead-opp { top: 616px; border: 4px solid rgba(255, 77, 99, 0.6); }
+    .lead-seg { flex: 1; border-radius: 10px; background: rgba(255, 255, 255, 0.06); position: relative; overflow: hidden; }
+    .lead-fill {
+      position: absolute; inset: 0; transform-origin: 50% 100%;
+      background: linear-gradient(180deg, #f7a6ff 0%, var(--elixir) 45%, var(--elixir-deep) 100%);
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5);
+    }
+    .lead-num { position: absolute; right: 110px; font-weight: 900; font-size: 54px; }
+    #lead-you-n { top: 286px; }
+    #lead-opp-n { top: 546px; }
+    #lead-gap {
+      position: absolute; top: 760px; left: 0; right: 0; text-align: center; line-height: 1;
+      font-weight: 900; font-size: 170px; letter-spacing: -0.04em; color: var(--win);
+      text-shadow: 0 7px 0 #0f7a40, 0 0 60px rgba(65, 229, 138, 0.4);
+    }
+    #lead-stamp {
+      position: absolute; top: 960px; left: 0; right: 0; text-align: center;
+    }
+    #lead-stamp span {
+      display: inline-block; padding: 16px 34px; border: 8px solid var(--red); border-radius: 18px;
+      font-weight: 900; font-size: 62px; letter-spacing: 0.02em; color: var(--red); background: rgba(40, 0, 10, 0.5);
+    }
+  </style>
+  <div id="root" data-composition-id="lead" data-width="1080" data-height="1920">
+    <div id="lead-you-l" class="lead-label clip" data-start="0" data-duration="5">ТЫ</div>
+    <div id="lead-you-n" class="lead-num clip" data-start="0" data-duration="5">9</div>
+    <div id="lead-you" class="lead-bar clip" data-start="0" data-duration="5">
+      <div class="lead-seg"><div class="lead-fill"></div></div><div class="lead-seg"><div class="lead-fill"></div></div><div class="lead-seg"><div class="lead-fill"></div></div>
+      <div class="lead-seg"><div class="lead-fill"></div></div><div class="lead-seg"><div class="lead-fill"></div></div><div class="lead-seg"><div class="lead-fill"></div></div>
+      <div class="lead-seg"><div class="lead-fill" id="lead-y7"></div></div><div class="lead-seg"><div class="lead-fill" id="lead-y8"></div></div><div class="lead-seg"><div class="lead-fill" id="lead-y9"></div></div>
+      <div class="lead-seg"><div class="lead-fill" id="lead-y10"></div></div>
+    </div>
+    <div id="lead-opp-l" class="lead-label clip" data-start="0" data-duration="5">СОПЕРНИК</div>
+    <div id="lead-opp-n" class="lead-num clip" data-start="0" data-duration="5">5</div>
+    <div id="lead-opp" class="lead-bar clip" data-start="0" data-duration="5">
+      <div class="lead-seg"><div class="lead-fill"></div></div><div class="lead-seg"><div class="lead-fill"></div></div><div class="lead-seg"><div class="lead-fill"></div></div>
+      <div class="lead-seg"><div class="lead-fill"></div></div><div class="lead-seg"><div class="lead-fill"></div></div><div class="lead-seg"><div class="lead-fill" id="lead-o6"></div></div>
+      <div class="lead-seg"><div class="lead-fill" id="lead-o7"></div></div><div class="lead-seg"><div class="lead-fill" id="lead-o8"></div></div><div class="lead-seg"><div class="lead-fill" id="lead-o9"></div></div>
+      <div class="lead-seg"><div class="lead-fill" id="lead-o10"></div></div>
+    </div>
+    <div id="lead-gap" class="clip" data-start="1.15" data-duration="3.85">+4</div>
+    <div id="lead-stamp" class="clip" data-start="4.05" data-duration="0.95"><span>НЕЧЕМ ЗАЩИЩАТЬСЯ</span></div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo(["#lead-you-l", "#lead-you", "#lead-you-n"], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out", stagger: 0.05 }, 0.05);
+    tl.fromTo(["#lead-opp-l", "#lead-opp", "#lead-opp-n"], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "expo.out", stagger: 0.05 }, 0.15);
+    // both start even at 6; empty slots stay empty
+    tl.set(["#lead-y10", "#lead-o7", "#lead-o8", "#lead-o9", "#lead-o10"], { scaleY: 0 }, 0);
+    tl.set(["#lead-y7", "#lead-y8", "#lead-y9"], { scaleY: 0 }, 0);
+    // you bank up while he spends
+    tl.fromTo(["#lead-y7", "#lead-y8", "#lead-y9"], { scaleY: 0 }, { scaleY: 1, duration: 0.22, ease: "power3.out", stagger: 0.16 }, 0.59);
+    tl.fromTo("#lead-o6", { scaleY: 1 }, { scaleY: 0, duration: 0.3, ease: "power2.in" }, 0.75);
+    // the numbers follow the bars (step changes, no tweening of text)
+    tl.set("#lead-you-n", { textContent: "6" }, 0).set("#lead-you-n", { textContent: "7" }, 0.7).set("#lead-you-n", { textContent: "8" }, 0.86).set("#lead-you-n", { textContent: "9" }, 1.02);
+    tl.set("#lead-opp-n", { textContent: "6" }, 0).set("#lead-opp-n", { textContent: "5" }, 1.0);
+    tl.fromTo("#lead-gap", { opacity: 0, scale: 1.6, filter: "blur(10px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.4, ease: "expo.out" }, 1.24);
+    // the opponent's side goes cold
+    tl.to("#lead-opp", { borderColor: "rgba(255, 77, 99, 1)", duration: 0.2, ease: "power2.out" }, 2.65);
+    tl.to("#lead-opp .lead-fill", { filter: "grayscale(1) brightness(0.6)", duration: 0.4, ease: "power2.out" }, 2.7);
+    tl.fromTo("#lead-stamp", { opacity: 0, scale: 1.8, rotation: -14 }, { opacity: 1, scale: 1, rotation: -5, duration: 0.25, ease: "power4.out" }, 4.1);
+    tl.to(["#lead-you-l", "#lead-you", "#lead-you-n", "#lead-opp-l", "#lead-opp", "#lead-opp-n", "#lead-gap", "#lead-stamp"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in" }, 4.8);
+    window.__timelines["lead"] = tl;
+  </script>
+</template>

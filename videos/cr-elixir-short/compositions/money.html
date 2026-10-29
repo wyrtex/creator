@@ -1,0 +1,97 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; }
+    #money-drop { position: absolute; left: 430px; top: 250px; width: 220px; height: 268px; }
+    #money-drop svg { width: 100%; height: 100%; overflow: visible; }
+    #money-t1 {
+      position: absolute; top: 580px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 104px; letter-spacing: -0.03em; line-height: 1;
+    }
+    #money-t2 {
+      position: absolute; top: 700px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 104px; letter-spacing: -0.03em; line-height: 1;
+      color: var(--gold); text-shadow: 0 6px 0 #a64b00;
+    }
+    #money-bar {
+      position: absolute; left: 110px; top: 900px; width: 860px; height: 84px; padding: 10px;
+      border-radius: 24px; background: rgba(8, 10, 40, 0.75); border: 4px solid rgba(225, 75, 255, 0.5);
+      display: flex; gap: 8px;
+    }
+    .money-seg {
+      flex: 1; border-radius: 10px; transform-origin: 50% 100%;
+      background: linear-gradient(180deg, #f7a6ff 0%, var(--elixir) 45%, var(--elixir-deep) 100%);
+      box-shadow: inset 0 2px 0 rgba(255, 255, 255, 0.5);
+    }
+    #money-count {
+      position: absolute; top: 1010px; left: 0; right: 0; text-align: center;
+      font-weight: 800; font-size: 40px; color: #f3c9ff; letter-spacing: 0.04em;
+    }
+    #money-h1 {
+      position: absolute; top: 330px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 104px; letter-spacing: -0.03em; line-height: 1;
+    }
+    #money-h2 {
+      position: absolute; top: 450px; left: 0; right: 0; text-align: center;
+      font-weight: 900; font-size: 104px; letter-spacing: -0.03em; line-height: 1;
+      color: var(--gold); text-shadow: 0 6px 0 #a64b00;
+    }
+    #money-swap { position: absolute; left: 0; right: 0; top: 640px; height: 300px; }
+    #money-swap .drop { top: 60px; width: 150px; height: 182px; }
+    #money-swap .drop span { top: 66px; font-size: 84px; }
+    #money-d-you { left: 220px; }
+    #money-d-opp { left: 710px; }
+    #money-arrows { position: absolute; left: 400px; top: 90px; width: 280px; height: 130px; }
+  </style>
+  <div id="root" data-composition-id="money" data-width="1080" data-height="1920">
+    <div id="money-drop" class="clip" data-start="0" data-duration="2.6">
+      <svg viewBox="0 0 92 112">
+        <defs><linearGradient id="money-dg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7a6ff"/><stop offset="1" stop-color="#8a1fd1"/></linearGradient></defs>
+        <path d="M46 4 C64 32 86 52 86 72 A40 40 0 0 1 6 72 C6 52 28 32 46 4 Z" fill="url(#money-dg)" stroke="#3a0a5c" stroke-width="4"/>
+        <ellipse cx="30" cy="64" rx="8" ry="15" fill="rgba(255,255,255,0.45)"/>
+      </svg>
+    </div>
+    <div id="money-t1" class="clip" data-start="0" data-duration="2.6">ЭЛИКСИР</div>
+    <div id="money-t2" class="clip" data-start="1" data-duration="1.6">= ДЕНЬГИ</div>
+    <div id="money-bar" class="clip" data-start="0" data-duration="2.6">
+      <div class="money-seg"></div><div class="money-seg"></div><div class="money-seg"></div><div class="money-seg"></div><div class="money-seg"></div>
+      <div class="money-seg"></div><div class="money-seg"></div><div class="money-seg"></div><div class="money-seg"></div><div class="money-seg"></div>
+    </div>
+    <div id="money-count" class="clip" data-start="0" data-duration="2.6">МАКСИМУМ — 10</div>
+
+    <div id="money-h1" class="clip" data-start="2.5" data-duration="2.2">КАЖДЫЙ ХОД</div>
+    <div id="money-h2" class="clip" data-start="3.7" data-duration="1">— СДЕЛКА</div>
+    <div id="money-swap" class="clip" data-start="3" data-duration="1.7">
+      <div class="drop" id="money-d-you">
+        <svg viewBox="0 0 92 112"><defs><linearGradient id="money-dg2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9fd3ff"/><stop offset="1" stop-color="#1d6fd6"/></linearGradient></defs>
+          <path d="M46 4 C64 32 86 52 86 72 A40 40 0 0 1 6 72 C6 52 28 32 46 4 Z" fill="url(#money-dg2)" stroke="#0a2a5c" stroke-width="4"/></svg>
+        <span>3</span>
+      </div>
+      <svg id="money-arrows" viewBox="0 0 280 130">
+        <path d="M20 40 H240 M210 14 L246 40 L210 66" fill="none" stroke="#ffffff" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M260 96 H40 M70 70 L34 96 L70 122" fill="none" stroke="#aab6ea" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="drop" id="money-d-opp">
+        <svg viewBox="0 0 92 112"><defs><linearGradient id="money-dg3" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff9fae"/><stop offset="1" stop-color="#c81e3a"/></linearGradient></defs>
+          <path d="M46 4 C64 32 86 52 86 72 A40 40 0 0 1 6 72 C6 52 28 32 46 4 Z" fill="url(#money-dg3)" stroke="#5c0a1a" stroke-width="4"/></svg>
+        <span>5</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const tl = gsap.timeline({ paused: true });
+    tl.fromTo("#money-drop", { scale: 0.4, opacity: 0, rotation: -12 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.6, ease: "back.out(1.6)" }, 0.08);
+    tl.fromTo("#money-t1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 0.1);
+    tl.fromTo("#money-t2", { opacity: 0, scale: 1.2 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 1.09);
+    // the bar fills segment by segment while the line is spoken
+    tl.fromTo("#money-bar .money-seg", { scaleY: 0, opacity: 0.2 }, { scaleY: 1, opacity: 1, duration: 0.22, ease: "power3.out", stagger: 0.17 }, 0.3);
+    tl.fromTo("#money-count", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, 1.9);
+    tl.to(["#money-drop", "#money-t1", "#money-t2", "#money-bar", "#money-count"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in" }, 2.36);
+    tl.fromTo("#money-h1", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, 2.6);
+    tl.fromTo("#money-d-you", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, 3.05);
+    tl.fromTo("#money-d-opp", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.45, ease: "expo.out" }, 3.12);
+    tl.fromTo("#money-arrows", { opacity: 0, scaleX: 0.3 }, { opacity: 1, scaleX: 1, duration: 0.35, ease: "expo.out" }, 3.2);
+    tl.fromTo("#money-h2", { opacity: 0, scale: 1.25 }, { opacity: 1, scale: 1, duration: 0.3, ease: "expo.out" }, 3.81);
+    tl.to(["#money-h1", "#money-h2", "#money-swap"], { opacity: 0, filter: "blur(10px)", duration: 0.18, ease: "power2.in" }, 4.5);
+    window.__timelines["money"] = tl;
+  </script>
+</template>
